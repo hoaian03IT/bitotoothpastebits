@@ -2,24 +2,28 @@ import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 import { Container, Nav, Navbar, Offcanvas } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { publicRoutes } from "~/config/routePath";
 
-function NavbarHeader() {
+function NavbarHeader({ className }) {
     const [showAbout, setShowAbout] = useState(false);
     const [showCart, setShowCart] = useState(false);
+    const [bgColor, setBgColor] = useState("transparent");
 
-    useEffect(() => {
-        const root = document.getElementById("root");
-        if (showAbout || showCart) {
-            root.style.filter = "blur(1px)";
-        } else {
-            root.style.filter = "blur(0px)";
-        }
-    }, [showAbout, showCart]);
+    const { pathname } = useLocation();
+
+    pathname === publicRoutes.home &&
+        window.addEventListener("scroll", () => {
+            if (window.scrollY !== 0) {
+                setBgColor("white");
+            } else {
+                setBgColor("transparent");
+            }
+        });
 
     return (
-        <Navbar className="px-5">
-            <Container fluid className="align-items-start justify-content-between">
+        <Navbar className={`px-5 ${className} z-3`} variant={bgColor}>
+            <Container fluid className="align-items-center justify-content-between">
                 <Nav className="align-items-center">
                     <Nav.Link as={Link} to="/" className="text-black fs-5 fw-semibold pe-5">
                         Shop

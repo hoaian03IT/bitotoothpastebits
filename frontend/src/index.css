@@ -11,11 +11,11 @@ code {
 }
 
 /* Font */
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;1,200;1,300;1,400&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap");
 
 :root {
-    --font-family1: "Noto Serif", serif;
+    --font-family1: "Playfair Display", serif;
     --font-family2: "Titillium Web", sans-serif;
     --red-color: #ff0000;
     --black-color: #131313;
@@ -27,6 +27,23 @@ code {
     padding: 0;
     box-sizing: border-box;
     font-family: var(--font-family2);
+    line-height: 1.5;
+}
+
+main {
+    height: 2000px;
+}
+
+.container-xxl {
+    max-width: 1400px;
+}
+
+.ff-1 {
+    font-family: var(--font-family1);
+}
+
+.ff-2 {
+    font-family: var(--font-family2);
 }
 
 .text-black {
@@ -37,7 +54,33 @@ code {
     cursor: pointer;
 }
 
+.z-3 {
+    z-index: 3;
+}
+.z-2 {
+    z-index: 2;
+}
+.z-1 {
+    z-index: 1;
+}
+.z-0 {
+    z-index: 0;
+}
+
 /* Navbar */
+.navbar {
+    transition: all 0.2s ease-in-out;
+}
+
+.navbar-transparent {
+    transition: all 0.2s ease-in-out;
+    background-color: transparent;
+}
+.navbar-white {
+    background-color: var(--white-color);
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 1px 0px, rgba(0, 0, 0, 0.03) 0px 2px 2px 0px, rgba(0, 0, 0, 0.02) 0px 4px 4px 0px,
+        rgba(0, 0, 0, 0.02) 0px 8px 8px 0px, rgba(0, 0, 0, 0.02) 0px 16px 16px 0px;
+}
 
 .brand-logo a {
     font-size: 2rem;
@@ -54,4 +97,47 @@ code {
     border: 2px solid var(--white-color);
     border-radius: 10px;
     background-color: var(--red-color);
+}
+
+/* banner */
+
+.banner {
+    min-height: 400px;
+    max-height: 83vh;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.image-banner {
+    width: 100%;
+    object-position: center;
+    z-index: 0;
+}
+
+.banner-content {
+    transform: translateY(-50%);
+}
+
+.banner-slogan {
+    font-size: 4rem;
+}
+
+/* button */
+
+.btn {
+    border-radius: 100px;
+}
+
+.btn-primary {
+    padding: 12px 36px;
+    background-color: var(--black-color);
+    border: 2px solid var(--black-color);
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+    background-color: white !important;
+    color: black !important;
+    border: 2px solid var(--black-color) !important;
 }

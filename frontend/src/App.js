@@ -4,15 +4,15 @@ import { routes } from "./routes";
 
 function App() {
     return (
-        <div className="App">
+        <div>
             <header>
-                <NavbarHeader />
+                <NavbarHeader className="position-fixed start-0 end-0" />
             </header>
             <main>
                 <Routes>
                     {routes.map((route) => {
                         const Component = route.component;
-                        return <Route path={route.path} element={<Component />} />;
+                        return <Route key={route.path} path={route.path} element={<Component />} />;
                     })}
                 </Routes>
             </main>
