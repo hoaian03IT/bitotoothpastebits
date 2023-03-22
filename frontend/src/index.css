@@ -1,13 +1,57 @@
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+        "Helvetica Neue", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+/* Font */
+@import url("https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;1,200;1,300;1,400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+
+:root {
+    --font-family1: "Noto Serif", serif;
+    --font-family2: "Titillium Web", sans-serif;
+    --red-color: #ff0000;
+    --black-color: #131313;
+    --white-color: #fff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--font-family2);
+}
+
+.text-black {
+    color: var(--black-color);
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+/* Navbar */
+
+.brand-logo a {
+    font-size: 2rem;
+    font-family: var(--font-family1);
+    font-weight: 700;
+}
+
+.cart-notify {
+    position: absolute;
+    top: -4px;
+    right: -3px;
+    width: 10px;
+    height: 10px;
+    border: 2px solid var(--white-color);
+    border-radius: 10px;
+    background-color: var(--red-color);
 }
