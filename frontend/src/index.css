@@ -13,10 +13,12 @@ code {
 /* Font */
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;1,200;1,300;1,400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Alkatra:wght@400;500;600;700&display=swap");
 
 :root {
     --font-family1: "Playfair Display", serif;
     --font-family2: "Titillium Web", sans-serif;
+    --font-family3: "Alkatra", cursive;
     --red-color: #ff0000;
     --black-color: #131313;
     --white-color: #fff;
@@ -44,6 +46,14 @@ main {
 
 .ff-2 {
     font-family: var(--font-family2);
+}
+
+.ff-3 {
+    font-family: var(--font-family3);
+}
+
+.fs-small {
+    font-size: 13px;
 }
 
 .text-black {
@@ -126,12 +136,28 @@ main {
 
 .btn {
     border-radius: 100px;
+    padding: 12px 36px;
 }
 
 .btn-primary {
-    padding: 12px 36px;
     background-color: var(--black-color);
     border: 2px solid var(--black-color);
+}
+
+.btn-small {
+    padding: 2px;
+    width: 144px;
+}
+
+.btn-light {
+    background-color: var(--white-color);
+    border: 1px solid #dfdfdf;
+}
+
+.btn-light:hover {
+    border-color: var(--black-color);
+    background-color: var(--black-color);
+    color: var(--white-color);
 }
 
 .btn-primary:hover,
@@ -140,4 +166,29 @@ main {
     background-color: white !important;
     color: black !important;
     border: 2px solid var(--black-color) !important;
+}
+
+/* Card product */
+.card-product {
+    width: 15vw;
+    border-radius: 20px;
+}
+
+.card-image {
+    border-radius: 20px;
+    transform: scale(5px);
+}
+
+/* Animation */
+@keyframes fadein {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.fadeIn {
+    animation: fadein 0.4s linear 0s 1;
 }

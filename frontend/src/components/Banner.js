@@ -10,7 +10,7 @@ function Banner() {
                     Keeping it <span className="fst-italic ff-1">clean</span>
                 </h1>
                 <h3>Your daily routine, plastic-free and refillable forever.</h3>
-                <Button className="mt-4 btn-primary fs-5">
+                <Button variant="primary" className="mt-4 fs-5">
                     <strong>Shop now</strong>
                 </Button>
             </Container>
