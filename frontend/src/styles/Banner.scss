@@ -1,0 +1,20 @@
+.banner {
+    min-height: 400px;
+    max-height: 83vh;
+    height: 100vh;
+    overflow: hidden;
+
+    &-content {
+        transform: translateY(-50%);
+    }
+
+    &-slogan {
+        font-size: 4rem;
+    }
+
+    &-image {
+        width: 100%;
+        object-position: center;
+        z-index: 0;
+    }
+}

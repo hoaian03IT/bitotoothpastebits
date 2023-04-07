@@ -1,0 +1,11 @@
+.card {
+    &-featured-product {
+        width: 15vw;
+        border-radius: 20px;
+    }
+
+    &-image {
+        border-radius: 20px;
+        transform: scale(5px);
+    }
+}

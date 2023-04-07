@@ -1,27 +1,16 @@
-body {
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
-        "Helvetica Neue", sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
-}
-
 /* Font */
-@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;1,200;1,300;1,400&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Alkatra:wght@400;500;600;700&display=swap");
 
 :root {
-    --font-family1: "Playfair Display", serif;
+    --font-family1: "Cormorant Garamond", serif;
     --font-family2: "Titillium Web", sans-serif;
     --font-family3: "Alkatra", cursive;
     --red-color: #ff0000;
     --black-color: #131313;
     --white-color: #fff;
+    --grey-color: #dce7ed;
 }
 
 * {
@@ -32,8 +21,36 @@ code {
     line-height: 1.5;
 }
 
-main {
-    height: 2000px;
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    color: var(--black-color);
+    text-decoration: none;
+}
+a:hover,
+a:active,
+a:focus {
+    color: var(--black-color);
+}
+
+.container-no-gutter {
+    padding: 0;
+}
+
+.mt-large {
+    margin-top: 10rem;
+}
+
+.mb-large {
+    margin-bottom: 10rem;
+}
+
+.my-large {
+    margin: 10rem 0;
 }
 
 .container-xxl {
@@ -54,6 +71,10 @@ main {
 
 .fs-small {
     font-size: 13px;
+}
+
+.fs-huge {
+    font-size: 4.6rem;
 }
 
 .text-black {
@@ -77,66 +98,39 @@ main {
     z-index: 0;
 }
 
-/* Navbar */
-.navbar {
-    transition: all 0.2s ease-in-out;
-}
-
-.navbar-transparent {
-    transition: all 0.2s ease-in-out;
-    background-color: transparent;
-}
-.navbar-white {
-    background-color: var(--white-color);
-    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 1px 0px, rgba(0, 0, 0, 0.03) 0px 2px 2px 0px, rgba(0, 0, 0, 0.02) 0px 4px 4px 0px,
-        rgba(0, 0, 0, 0.02) 0px 8px 8px 0px, rgba(0, 0, 0, 0.02) 0px 16px 16px 0px;
-}
-
-.brand-logo a {
-    font-size: 2rem;
-    font-family: var(--font-family1);
-    font-weight: 700;
-}
-
-.cart-notify {
-    position: absolute;
-    top: -4px;
-    right: -3px;
-    width: 10px;
-    height: 10px;
-    border: 2px solid var(--white-color);
-    border-radius: 10px;
-    background-color: var(--red-color);
-}
-
-/* banner */
-
-.banner {
-    min-height: 400px;
-    max-height: 83vh;
-    height: 100vh;
-    overflow: hidden;
-}
-
-.image-banner {
-    width: 100%;
-    object-position: center;
-    z-index: 0;
-}
-
-.banner-content {
-    transform: translateY(-50%);
-}
-
-.banner-slogan {
-    font-size: 4rem;
-}
-
-/* button */
-
 .btn {
     border-radius: 100px;
     padding: 12px 36px;
+    min-width: 250px;
+    box-shadow: 0 0 30px #0003 !important;
+}
+
+.btn-inbox-social {
+    height: 34px;
+    border-radius: 0;
+    border: 1px solid var(--black-color);
+    background-color: var(--black-color);
+    color: var(--white-color);
+    min-width: 88px;
+    padding: 0;
+}
+
+.btn-inbox-social:hover,
+.btn-inbox-social:active,
+.btn-inbox-social:focus {
+    background-color: var(--black-color) !important;
+    color: var(--white-color) !important;
+    border: 1px solid var(--black-color) !important;
+}
+
+.btn-fade {
+    background-color: rgba(255, 255, 255, 0.6);
+    border: 0;
+    outline: 0;
+}
+
+.btn-fade:hover {
+    background-color: rgba(255, 255, 255, 0.7);
 }
 
 .btn-primary {
@@ -146,7 +140,10 @@ main {
 
 .btn-small {
     padding: 2px;
-    width: 144px;
+}
+
+.btn-short {
+    min-width: 100px;
 }
 
 .btn-light {
@@ -168,19 +165,7 @@ main {
     border: 2px solid var(--black-color) !important;
 }
 
-/* Card product */
-.card-product {
-    width: 15vw;
-    border-radius: 20px;
-}
-
-.card-image {
-    border-radius: 20px;
-    transform: scale(5px);
-}
-
-/* Animation */
-@keyframes fadein {
+@keyframes fadeIn {
     0% {
         opacity: 0;
     }
@@ -189,6 +174,16 @@ main {
     }
 }
 
+@keyframes bubbleUp {
+    0% {
+        opacity: 0;
+        bottom: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
 .fadeIn {
-    animation: fadein 0.4s linear 0s 1;
+    animation: fadeIn 0.4s linear 0s 1;
 }

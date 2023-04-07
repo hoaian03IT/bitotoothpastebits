@@ -5,6 +5,8 @@ import { Container, Nav, Navbar, Offcanvas } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
 import { publicRoutes } from "~/config/routePath";
 
+import "~/styles/NavbarHeader.scss";
+
 function NavbarHeader({ className }) {
     const [showAbout, setShowAbout] = useState(false);
     const [showCart, setShowCart] = useState(false);

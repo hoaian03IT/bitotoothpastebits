@@ -1,6 +1,11 @@
 import { Route, Routes } from "react-router-dom";
 import { NavbarHeader } from "./components/NavbarHeader";
 import { routes } from "./routes";
+import { RefreshInbox } from "./components/RefreshInbox";
+import { SitesLink } from "./components/SitesLink";
+
+import "~/styles/Footer.scss";
+import { Copyright } from "./components/Copyright";
 
 function App() {
     return (
@@ -16,7 +21,11 @@ function App() {
                     })}
                 </Routes>
             </main>
-            <footer></footer>
+            <footer>
+                <RefreshInbox />
+                <SitesLink />
+                <Copyright />
+            </footer>
         </div>
     );
 }

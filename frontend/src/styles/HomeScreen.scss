@@ -1,0 +1,14 @@
+.background-linear-gradient1 {
+    background: linear-gradient(0deg, var(--grey-color), var(--grey-color), #fafdff, #f9feff, var(--grey-color), var(--grey-color));
+    border-radius: 10px;
+}
+
+.background-linear-gradient2 {
+    background: linear-gradient(#fff, var(--grey-color));
+}
+
+.video-product {
+    width: 100%;
+    height: 100%;
+    border-radius: 25px;
+}

@@ -4,4 +4,7 @@ export const images = {
     staticImgProduct: require("~/assets/images/static_image_product.jpg"),
     dynamicImgProduct1: require("~/assets/images/dynamic_image_product1.jpg"),
     staticImgProduct1: require("~/assets/images/static_image_product1.jpg"),
+    product1: require("~/assets/images/product1.jpg"),
+    product2: require("~/assets/images/product2.jpg"),
+    sticker: require("~/assets/images/sticker.jpg"),
 };
