@@ -21,12 +21,12 @@ function App() {
                 </MediaQuery>
             </header>
             <main>
-                {/* <Routes>
+                <Routes>
                     {routes.map((route) => {
                         const Component = route.component;
                         return <Route key={route.path} path={route.path} element={<Component />} />;
                     })}
-                </Routes> */}
+                </Routes>
             </main>
             <footer>
                 <RefreshInbox />

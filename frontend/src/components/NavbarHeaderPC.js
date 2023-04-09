@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 
 import "~/styles/NavbarHeader.scss";
 import { MyOffCanvas } from "./MyOffCanvas";
+import { useMediaQuery } from "react-responsive";
 
 function NavbarHeaderPC({ className }) {
     const [showAbout, setShowAbout] = useState(false);
@@ -26,10 +27,12 @@ function NavbarHeaderPC({ className }) {
         return () => window.removeEventListener("scroll", listener);
     }, []);
 
+    const matchPc = useMediaQuery({ query: "(min-width: 992px)" });
+
     return (
         <Container fluid>
             <Row>
-                <Navbar className={`px-5 ${className} z-3`} variant={bgColor}>
+                <Navbar className={`${matchPc ? "px-5" : ""} ${className} z-3`} variant={bgColor}>
                     <Container fluid className="align-items-center justify-content-between">
                         <Col sm={6} lg={4}>
                             <Nav className="align-items-center justify-content-start">

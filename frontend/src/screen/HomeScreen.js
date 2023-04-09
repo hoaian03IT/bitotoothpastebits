@@ -106,7 +106,7 @@ function HomeScreen() {
     return (
         <div>
             <Banner />
-            <div className="d-flex justify-content-center">
+            {/* <div className="d-flex justify-content-center">
                 {data.slice(0, 6).map((item) => (
                     <FeaturedProduct
                         key={item.id}
@@ -236,7 +236,7 @@ function HomeScreen() {
                 <Link className="fs-4 text-black">
                     Sustainability at Bite <FontAwesomeIcon icon={faArrowRight} />
                 </Link>
-            </div>
+            </div> */}
         </div>
     );
 }

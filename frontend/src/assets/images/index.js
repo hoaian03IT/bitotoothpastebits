@@ -1,5 +1,6 @@
 export const images = {
-    bannerPic1: require("~/assets/images/banner_pic1.jpg"),
+    bannerPc: require("~/assets/images/banner_pc.jpg"),
+    bannerMobile: require("~/assets/images/banner_mobile.jpg"),
     dynamicImgProduct: require("~/assets/images/dynamic_image_product.jpg"),
     staticImgProduct: require("~/assets/images/static_image_product.jpg"),
     dynamicImgProduct1: require("~/assets/images/dynamic_image_product1.jpg"),
