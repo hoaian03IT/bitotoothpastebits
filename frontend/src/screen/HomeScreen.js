@@ -53,7 +53,7 @@ const data = [
         monthDelivery: 4,
     },
     {
-        id: 1,
+        id: 6,
         staticImage: images.staticImgProduct1,
         dynamicImage: images.dynamicImgProduct1,
         name: "Body Balm",

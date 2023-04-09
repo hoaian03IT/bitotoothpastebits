@@ -76,6 +76,10 @@ footer {
             & .brand-logo {
                 height: 50px;
                 width: 50px;
+
+                & a {
+                    color: var(--black-color) !important;
+                }
             }
         }
 

@@ -37,6 +37,10 @@ a:focus {
     color: var(--black-color);
 }
 
+.offcanvas-fluid {
+    width: 100% !important;
+}
+
 .container-no-gutter {
     padding: 0;
 }
@@ -186,4 +190,56 @@ a:focus {
 
 .fadeIn {
     animation: fadeIn 0.4s linear 0s 1;
+}
+
+html *::-webkit-scrollbar {
+    border-radius: 0;
+    width: 8px;
+}
+
+html *::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(22, 24, 35, 0.06);
+}
+
+html *::-webkit-scrollbar-track {
+    border-radius: 0;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+button,
+input,
+[tabIndex] {
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+    color: var(--black-color);
+}
+
+svg {
+    outline: none;
+}
+
+.tippy-box {
+    font-size: 16px;
+    line-height: 22px;
+    border-radius: 8px;
+    background-color: rgba(84, 84, 84, 0.92);
+    color: rgb(255, 255, 255);
+}
+
+.tippy-box .tippy-content {
+    padding: 8px 9px;
+}
+
+.tippy-box .tippy-arrow {
+    color: rgba(84, 84, 84, 0.92);
+}
+
+.tippy-box[data-placement^="bottom"] > .tippy-arrow {
+    top: -1px;
 }

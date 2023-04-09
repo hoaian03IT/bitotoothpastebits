@@ -14,8 +14,8 @@
 }
 
 .brand-logo a {
-    font-size: 2rem;
-    font-family: var(--font-family1);
+    font-size: 3rem;
+    font-family: var(--font-family3);
     font-weight: 700;
 }
 
@@ -28,4 +28,8 @@
     border: 2px solid var(--white-color);
     border-radius: 10px;
     background-color: var(--red-color);
+}
+
+a.active {
+    color: #999;
 }
