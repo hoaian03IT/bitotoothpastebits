@@ -11,12 +11,12 @@ function FeaturedProduct({ staticImage, dynamicImage, name, price, monthDelivery
 
     return (
         <Card
-            className="card-featured-product border-0 my-5 px-2"
+            className="card-featured-product my-5 px-2"
             onMouseOver={() => setShowDynamicImg(true)}
             onMouseLeave={() => setShowDynamicImg(false)}>
             <Card.Img
                 onClick={() => navigate("/shop")}
-                className="fadeIn card-image cursor-pointer"
+                className="fadeIn card-featured-product-image"
                 variant="top"
                 src={staticImage}
                 alt={name}
@@ -24,17 +24,17 @@ function FeaturedProduct({ staticImage, dynamicImage, name, price, monthDelivery
             />
             <Card.Img
                 onClick={() => navigate("/shop")}
-                className="fadeIn card-image cursor-pointer"
+                className="fadeIn card-featured-product-image"
                 variant="top"
                 src={dynamicImage}
                 alt={name}
                 style={{ display: showDynamicImg ? "block" : "none" }}
             />
-            <Card.Title className="ff-3 fw-bold fs-5 mt-3 cursor-pointer" onClick={() => navigate("/shop")}>
+            <Card.Title className="card-featured-product-name ff-2 fw-bold fs-5 mt-3" onClick={() => navigate("/shop")}>
                 {name}
             </Card.Title>
             <Card.Text className="fs-small">FROM ${Math.ceil(price / monthDelivery)} / MONTH</Card.Text>
-            <Button className="btn-short btn-small" variant="light" as={Link} to="/shoplaal">
+            <Button className="btn-short btn-small" variant="light" as={Link} to="/shop">
                 Shop now
             </Button>
         </Card>

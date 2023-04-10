@@ -1,11 +1,26 @@
+@import "./breakpoints.scss";
+
 .card {
     &-featured-product {
-        width: 15vw;
         border-radius: 20px;
-    }
+        border: none;
 
-    &-image {
-        border-radius: 20px;
-        transform: scale(5px);
+        &-image {
+            border-radius: 20px;
+            transform: scale(5px);
+            cursor: pointer;
+        }
+
+        &-name {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            cursor: pointer;
+        }
+
+        & a[role="button"] {
+            display: block;
+            width: 60%;
+        }
     }
 }

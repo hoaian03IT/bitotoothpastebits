@@ -31,6 +31,7 @@ a {
     color: var(--black-color);
     text-decoration: none;
 }
+
 a:hover,
 a:active,
 a:focus {
@@ -43,6 +44,73 @@ a:focus {
 
 .container-no-gutter {
     padding: 0;
+}
+
+.scroll-container-x {
+    max-width: 1800px;
+    display: flex;
+    overflow-x: scroll !important;
+    overflow-y: hidden;
+    width: 100%;
+    height: auto;
+    transform: translateY(0) !important;
+    opacity: 1 !important;
+}
+
+.scroll-container-x::-webkit-scrollbar {
+    display: none;
+}
+
+.px-6 {
+    padding: 0 4.5rem;
+}
+
+.px-7 {
+    padding: 0 6rem;
+}
+
+.px-8 {
+    padding: 0 7.5rem;
+}
+
+.px-9 {
+    padding: 0 9rem;
+}
+
+.px-10 {
+    padding: 0 10.5rem;
+}
+
+.px-11 {
+    padding: 0 12rem;
+}
+
+.px-12 {
+    padding: 0 13.5rem;
+}
+
+.py-7 {
+    padding: 6rem 0;
+}
+
+.py-8 {
+    padding: 7.5rem 0;
+}
+
+.py-9 {
+    padding: 9rem 0;
+}
+
+.py-10 {
+    padding: 10.5rem 0;
+}
+
+.py-11 {
+    padding: 12rem 0;
+}
+
+.py-12 {
+    padding: 13.5rem 0;
 }
 
 .mt-large {

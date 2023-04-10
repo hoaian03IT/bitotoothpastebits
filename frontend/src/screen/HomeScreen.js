@@ -106,19 +106,23 @@ function HomeScreen() {
     return (
         <div>
             <Banner />
-            {/* <div className="d-flex justify-content-center">
-                {data.slice(0, 6).map((item) => (
-                    <FeaturedProduct
-                        key={item.id}
-                        staticImage={item.staticImage}
-                        dynamicImage={item.dynamicImage}
-                        name={item.name}
-                        price={item.price}
-                        monthDelivery={item.monthDelivery}
-                    />
-                ))}
+            <div className="home-carousel">
+                <div className="scroll-container-x">
+                    <div className="d-flex justify-content-center align-items-center">
+                        {data.slice(0, 5).map((item) => (
+                            <FeaturedProduct
+                                key={item.id}
+                                staticImage={item.staticImage}
+                                dynamicImage={item.dynamicImage}
+                                name={item.name}
+                                price={item.price}
+                                monthDelivery={item.monthDelivery}
+                            />
+                        ))}
+                    </div>
+                </div>
             </div>
-            <Container fluid>
+            {/* <Container fluid>
                 <Divider>
                     <Button className="fw-bold" variant="primary">
                         Shop All Products
