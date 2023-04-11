@@ -261,6 +261,7 @@ a:focus {
 }
 
 html *::-webkit-scrollbar {
+    display: none;
     border-radius: 0;
     width: 8px;
 }

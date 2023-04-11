@@ -1,6 +1,7 @@
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button, Carousel, Col, Container, Row } from "react-bootstrap";
+import { useMediaQuery } from "react-responsive";
 import { Link } from "react-router-dom";
 import { images } from "~/assets/images";
 import { videos } from "~/assets/videos";
@@ -103,6 +104,9 @@ const data1 = [
 ];
 
 function HomeScreen() {
+    const matchMobile = useMediaQuery({ query: "(max-width: 767px)" });
+    const matchPortable = useMediaQuery({ query: "(max-width: 991px)" });
+
     return (
         <div>
             <Banner />
@@ -122,9 +126,9 @@ function HomeScreen() {
                     </div>
                 </div>
             </div>
-            {/* <Container fluid>
+            <Container fluid>
                 <Divider>
-                    <Button className="fw-bold" variant="primary">
+                    <Button className={`fw-bold ${matchMobile ? "btn-small" : ""}`} variant="primary">
                         Shop All Products
                     </Button>
                 </Divider>
@@ -143,10 +147,10 @@ function HomeScreen() {
                 </div>
                 <div className="text-center">
                     <Carousel
-                        className="my-5 py-5"
+                        className="my-5 py-5 home-text-carousel"
                         variant="dark"
-                        nextIcon={<span aria-hidden="true" className="carousel-control-next-icon" />}
-                        prevIcon={<span aria-hidden="true" className="carousel-control-prev-icon" />}>
+                        nextIcon={matchMobile ? null : <span aria-hidden="true" className="carousel-control-next-icon" />}
+                        prevIcon={matchMobile ? null : <span aria-hidden="true" className="carousel-control-prev-icon" />}>
                         <Carousel.Item>
                             <h3 className="ff-1 fst-italic">"The Most Creative People in Business 2020"</h3>
                         </Carousel.Item>
@@ -167,15 +171,18 @@ function HomeScreen() {
                 </Divider>
                 <div>
                     <Row>
-                        <Col md={6}>
-                            <video className="video-product" autoPlay="autoplay" loop muted>
-                                <source src={videos.video1} type="video/mp4" />
-                            </video>
-                        </Col>
-                        <Col md={6} className="flex-row">
+                        {!matchPortable && (
+                            <Col md={6}>
+                                <video className="video-product" autoPlay="autoplay" loop muted>
+                                    <source src={videos.video1} type="video/mp4" />
+                                </video>
+                            </Col>
+                        )}
+
+                        <Col md={matchPortable ? 12 : 6} className="flex-row">
                             <Row>
                                 {data1.slice(0, 5).map((item) => (
-                                    <Col md={6} key={item.id}>
+                                    <Col xs={6} key={item.id}>
                                         <ShopProduct
                                             name={item.name}
                                             description={item.description}
@@ -198,10 +205,10 @@ function HomeScreen() {
                 </Divider>
                 <div>
                     <Row>
-                        <Col md={6} className="flex-row">
+                        <Col md={matchPortable ? 12 : 6} className="flex-row">
                             <Row>
                                 {data1.slice(0, 5).map((item) => (
-                                    <Col md={6} key={item.id}>
+                                    <Col xs={6} key={item.id}>
                                         <ShopProduct
                                             name={item.name}
                                             description={item.description}
@@ -215,32 +222,35 @@ function HomeScreen() {
                                 ))}
                             </Row>
                         </Col>
-                        <Col md={6}>
-                            <video className="video-product" autoPlay="autoplay" loop muted>
-                                <source src={videos.video2} type="video/mp4" />
-                            </video>
-                        </Col>
+
+                        {!matchPortable && (
+                            <Col md={6}>
+                                <video className="video-product" autoPlay="autoplay" loop muted>
+                                    <source src={videos.video2} type="video/mp4" />
+                                </video>
+                            </Col>
+                        )}
                     </Row>
                 </div>
             </Container>
             <div
                 className="text-center mt-large background-linear-gradient2 d-flex justify-content-center align-items-center flex-column"
                 style={{ height: "500px" }}>
-                <h1 className="fs-huge fw-bold ff-1">
+                <h1 className={`${matchPortable ? "fs-1" : "fs-huge"} fw-bold ff-1`}>
                     One{" "}
                     <span className="fst-italic ff-1" style={{ textDecoration: "underline", color: "red" }}>
                         billion
                     </span>{" "}
                     toothpaste tubes are <br /> thrown out each year
                 </h1>
-                <p className="fs-3">
+                <p className={`${matchMobile ? "fs-5" : "fs-3"}`}>
                     We want to end this plastic waste, give you a healthier smile,
                     <br /> and build the world's most sustainable oral care company.
                 </p>
-                <Link className="fs-4 text-black">
+                <Link className={`${matchMobile ? "fs-5" : "fs-4 "} text-black`}>
                     Sustainability at Bite <FontAwesomeIcon icon={faArrowRight} />
                 </Link>
-            </div> */}
+            </div>
         </div>
     );
 }

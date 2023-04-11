@@ -21,6 +21,18 @@
     padding: 0 11rem;
 }
 
+.home-text-carousel {
+    height: 160px;
+
+    & .carousel-indicators button {
+        height: 6px;
+        width: 6px;
+        background-color: transparent !important;
+        border-radius: 50%;
+        border: 1px solid #000;
+    }
+}
+
 @media (max-width: $xl) {
     .home-carousel {
         padding: 0 3rem;
@@ -30,5 +42,9 @@
 @media (max-width: $sm) {
     .home-carousel {
         padding: 0 0.4rem;
+    }
+    .home-text-carousel {
+        border: 2px solid var(--grey-color);
+        border-radius: 10px;
     }
 }

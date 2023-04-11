@@ -36,12 +36,19 @@ function NavbarHeaderPC({ className }) {
                     <Container fluid className="align-items-center justify-content-between">
                         <Col sm={6} lg={4}>
                             <Nav className="align-items-center justify-content-start">
-                                <Nav.Link as={Link} to="/" className="text-black fs-5 fw-semibold p-2">
+                                <Nav.Link as={Link} to="/" className="text-black fs-5 fw-semibold p-3">
                                     Shop
                                 </Nav.Link>
 
-                                <Nav.Item className="text-black fs-5 fw-semibold p-2 cursor-pointer" onClick={() => setShowAbout(true)}>
-                                    About <FontAwesomeIcon icon={faAngleDown} />
+                                <Nav.Item
+                                    className="text-black fs-5 fw-semibold p-3 cursor-pointer position-relative"
+                                    onClick={() => setShowAbout(true)}>
+                                    About{" "}
+                                    <FontAwesomeIcon
+                                        className="position-absolute"
+                                        style={{ top: "50%", right: "-2px", transform: "translateY(-50%)" }}
+                                        icon={faAngleDown}
+                                    />
                                 </Nav.Item>
 
                                 <MyOffCanvas title="About" show={showAbout} onHide={() => setShowAbout(false)}>
@@ -68,7 +75,7 @@ function NavbarHeaderPC({ className }) {
                                     </Nav.Link>
                                 </MyOffCanvas>
 
-                                <Nav.Link as={Link} to="/" className="text-black fs-5 p-2 fw-semibold">
+                                <Nav.Link as={Link} to="/" className="text-black fs-5 p-3 fw-semibold">
                                     Sustainability
                                 </Nav.Link>
                             </Nav>
