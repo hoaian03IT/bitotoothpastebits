@@ -11,6 +11,8 @@
     --black-color: #131313;
     --white-color: #fff;
     --grey-color: #dce7ed;
+    --height-navbar: 70px;
+    --max-height-navbar: 80px;
 }
 
 * {
@@ -59,6 +61,14 @@ a:focus {
 
 .scroll-container-x::-webkit-scrollbar {
     display: none;
+}
+
+.word-break-all {
+    word-break: break-all;
+}
+
+.form-control {
+    box-shadow: none !important;
 }
 
 .px-6 {

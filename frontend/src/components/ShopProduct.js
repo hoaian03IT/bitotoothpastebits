@@ -14,16 +14,22 @@ function ShopProduct(props) {
     const matchMobile = useMediaQuery({ query: "(max-width: 767px)" });
 
     return (
-        <Card className={`border-0 ${active && "active"}`} onMouseOver={() => setActive(true)} onMouseOut={() => setActive(false)}>
+        <Card
+            className={`border-0 ${active && "active"} cursor-pointer`}
+            onMouseOver={() => setActive(true)}
+            onMouseOut={() => setActive(false)}
+            onClick={() => navigate("/shop")}>
             <Card.Body>
                 <div className="position-relative">
                     <div className="shop-product-image">
                         <Card.Img src={props.image} alt={props.name} onClick={() => navigate("/details")} />
                     </div>
-                    <Button variant="fade" className={`card-button-above ${active && "appear"} fw-bold`}>
+                    <Button variant="fade" className={`card-button-above ${matchMobile ? "btn-small" : ""} ${active && "appear"} fw-bold`}>
                         Learn More
                     </Button>
-                    <Button variant="primary" className={`card-button-below ${active && "appear"} fw-bold`}>
+                    <Button
+                        variant="primary"
+                        className={`card-button-below ${matchMobile ? "btn-small" : ""} ${active && "appear"} fw-bold`}>
                         Add To Cart
                     </Button>
                     {props.specialPrice && <Sticker price={props.specialPrice} />}

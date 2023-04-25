@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import "~/styles/NavbarHeader.scss";
 import { MyOffCanvas } from "./MyOffCanvas";
 import { useMediaQuery } from "react-responsive";
+import { publicRoutes } from "~/config/routePath";
 
 function NavbarHeaderPC({ className }) {
     const [showAbout, setShowAbout] = useState(false);
@@ -43,7 +44,7 @@ function NavbarHeaderPC({ className }) {
                                 <Nav.Item
                                     className="text-black fs-5 fw-semibold p-3 cursor-pointer position-relative"
                                     onClick={() => setShowAbout(true)}>
-                                    About{" "}
+                                    About
                                     <FontAwesomeIcon
                                         className="position-absolute"
                                         style={{ top: "50%", right: "-2px", transform: "translateY(-50%)" }}
@@ -84,7 +85,7 @@ function NavbarHeaderPC({ className }) {
                         <Col sm={2} lg={4}>
                             <Nav className="justify-content-center">
                                 <Navbar.Brand className="brand-logo">
-                                    <Link to="/">Bito</Link>
+                                    <Link to={publicRoutes.home}>Bito</Link>
                                 </Navbar.Brand>
                             </Nav>
                         </Col>
@@ -105,8 +106,8 @@ function NavbarHeaderPC({ className }) {
                                     show={showCart}
                                     onHide={() => setShowCart(false)}></MyOffCanvas>
 
-                                <Nav.Link as={Link} to="/" className="text-black fs-5 fw-semibold ps-5">
-                                    My Account
+                                <Nav.Link as={Link} to={publicRoutes.signIn} className="text-black fs-5 fw-semibold ps-5">
+                                    Sign In
                                 </Nav.Link>
                             </Nav>
                         </Col>

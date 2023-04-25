@@ -8,6 +8,7 @@ import { Link, NavLink } from "react-router-dom";
 import "~/styles/NavbarHeader.scss";
 import { MyOffCanvas } from "./MyOffCanvas";
 import { Divider } from "./Divider";
+import { publicRoutes } from "~/config/routePath";
 
 function NavbarHeaderMobile({ className }) {
     const [showBars, setShowBars] = useState(false);
@@ -134,8 +135,8 @@ function NavbarHeaderMobile({ className }) {
                                 )}
                             </div>
                             <Divider className="my-3" position="right" />
-                            <Link to="/login" className="fs-4 fw-semibold">
-                                LOG IN
+                            <Link to={publicRoutes.signIn} className="fs-4 fw-semibold">
+                                SIGN IN
                             </Link>
                             <Link to="/help" className="fs-4 fw-semibold">
                                 HELP
@@ -145,7 +146,7 @@ function NavbarHeaderMobile({ className }) {
                 </Nav>
 
                 <Navbar.Brand className="brand-logo">
-                    <Nav.Link as={Link} to="/" className="fs-1">
+                    <Nav.Link as={Link} to={publicRoutes.home} className="fs-1">
                         Bito
                     </Nav.Link>
                 </Navbar.Brand>

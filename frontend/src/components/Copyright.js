@@ -13,7 +13,7 @@ function Copyright() {
                     </Col>
                     <Col lg={6} className="mb-3">
                         <Row className="d-flex justify-content-end text-center">
-                            <Col xs={12} sm={12} md={12} lg={5} className="fw-semibold">
+                            <Col xs={12} sm={12} md={12} lg={5} className="fw-semibold word-break-all">
                                 <Link>hello@bitetoothpastebits.com</Link>
                             </Col>
                             <Col xs={12} sm={4} lg={3} className="fw-semibold">
