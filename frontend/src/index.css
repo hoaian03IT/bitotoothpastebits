@@ -15,6 +15,10 @@
     --max-height-navbar: 80px;
 }
 
+header {
+    z-index: 9999;
+}
+
 * {
     margin: 0;
     padding: 0;

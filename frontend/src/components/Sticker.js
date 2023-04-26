@@ -5,7 +5,7 @@ import "~/styles/Sticker.scss";
 
 function Sticker({ price = "" }) {
     return (
-        <div className="relative-absolute sticker">
+        <div className="sticker relative-absolute">
             <Image className="sticker-image" src={images.sticker} />
             <span className="sticker-text">${price}</span>
         </div>

@@ -15,7 +15,7 @@ function ShopProduct(props) {
 
     return (
         <Card
-            className={`border-0 ${active && "active"} cursor-pointer`}
+            className={`shop-product border-0 ${active && "active"} cursor-pointer`}
             onMouseOver={() => setActive(true)}
             onMouseOut={() => setActive(false)}
             onClick={() => navigate("/shop")}>

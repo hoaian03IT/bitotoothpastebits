@@ -30,7 +30,7 @@ function NavbarHeaderMobile({ className }) {
         return () => window.removeEventListener("scroll", listener);
     }, []);
     return (
-        <Navbar className={`px-3 ${className} z-3`} variant={bgColor}>
+        <Navbar className={`navbar-mobile px-3 ${className} z-3`} variant={bgColor}>
             <Container fluid className="align-items-center justify-content-between">
                 <Nav className="align-items-center">
                     <Nav.Item>
@@ -42,7 +42,9 @@ function NavbarHeaderMobile({ className }) {
                                 <h1 className="fs-1 fw-bold">Shop</h1>
                                 <ul className="ps-3">
                                     <li>
-                                        <NavLink to="/shop" className={({ isActive }) => `${isActive ? "active" : ""} fs-3 fw-semibold`}>
+                                        <NavLink
+                                            to={publicRoutes.shop}
+                                            className={({ isActive }) => `${isActive ? "active" : ""} fs-3 fw-semibold`}>
                                             - Shop All
                                         </NavLink>
                                     </li>

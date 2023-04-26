@@ -31,13 +31,13 @@ function NavbarHeaderPC({ className }) {
     const matchPc = useMediaQuery({ query: "(min-width: 992px)" });
 
     return (
-        <Container fluid>
+        <Container fluid className="navbar-pc">
             <Row>
                 <Navbar className={`${matchPc ? "px-5" : ""} ${className} z-3`} variant={bgColor}>
                     <Container fluid className="align-items-center justify-content-between">
                         <Col sm={6} lg={4}>
                             <Nav className="align-items-center justify-content-start">
-                                <Nav.Link as={Link} to="/" className="text-black fs-5 fw-semibold p-3">
+                                <Nav.Link as={Link} to={publicRoutes.shop} className="text-black fs-5 fw-semibold p-3">
                                     Shop
                                 </Nav.Link>
 

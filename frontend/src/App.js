@@ -12,12 +12,12 @@ import { NavbarHeaderMobile } from "./components/NavbarHeaderMobile";
 function App() {
     return (
         <div>
-            <header>
+            <header className="position-fixed start-0 end-0">
                 <MediaQuery minWidth={768}>
-                    <NavbarHeaderPC className="position-fixed start-0 end-0" />
+                    <NavbarHeaderPC />
                 </MediaQuery>
                 <MediaQuery maxWidth={767}>
-                    <NavbarHeaderMobile className="position-fixed start-0 end-0" />
+                    <NavbarHeaderMobile />
                 </MediaQuery>
             </header>
             <main>
