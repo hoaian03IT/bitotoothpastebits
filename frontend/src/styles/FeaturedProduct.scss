@@ -1,6 +1,7 @@
 @import "./breakpoints.scss";
 
 .card {
+    animation: fadeIn 0.2s linear;
     &-featured-product {
         border-radius: 20px;
         border: none;

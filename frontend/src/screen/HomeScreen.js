@@ -2,13 +2,14 @@ import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button, Carousel, Col, Container, Row } from "react-bootstrap";
 import { useMediaQuery } from "react-responsive";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { images } from "~/assets/images";
 import { videos } from "~/assets/videos";
 import { Banner } from "~/components/Banner";
 import { Divider } from "~/components/Divider";
 import { FeaturedProduct } from "~/components/FeaturedProduct";
 import { ShopProduct } from "~/components/ShopProduct";
+import { publicRoutes } from "~/config/routePath";
 
 import "~/styles/HomeScreen.scss";
 
@@ -107,6 +108,8 @@ function HomeScreen() {
     const matchMobile = useMediaQuery({ query: "(max-width: 767px)" });
     const matchPortable = useMediaQuery({ query: "(max-width: 991px)" });
 
+    const navigate = useNavigate();
+
     return (
         <div>
             <Banner />
@@ -128,7 +131,10 @@ function HomeScreen() {
             </div>
             <Container fluid>
                 <Divider>
-                    <Button className={`fw-bold ${matchMobile ? "btn-small" : ""}`} variant="primary">
+                    <Button
+                        onClick={() => navigate(publicRoutes.shop)}
+                        className={`fw-bold ${matchMobile ? "btn-small" : ""}`}
+                        variant="primary">
                         Shop All Products
                     </Button>
                 </Divider>

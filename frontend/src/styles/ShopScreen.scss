@@ -1,7 +1,8 @@
+@import "./breakpoints.scss";
+
 .shop-screen {
     padding-top: var(--height-navbar);
-    // margin-top: var(--height-navbar);
-
+    animation: fadeIn 0.2s linear;
     & .shop-banner {
         padding: 20px 0;
         text-align: center;
@@ -31,6 +32,28 @@
                 padding: 10px 24px;
                 border: 1px solid #dfdfdf;
                 border-radius: 50px;
+            }
+        }
+
+        &-mobile {
+            position: sticky;
+            top: var(--height-navbar);
+            z-index: 1;
+        }
+    }
+}
+
+@media (max-width: $lg) {
+    .shop-screen {
+        & .shop-banner {
+            & h1 {
+                font-size: 2.8rem;
+                font-weight: bold;
+            }
+
+            & p {
+                font-size: 1rem;
+                font-weight: 600;
             }
         }
     }

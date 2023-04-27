@@ -8,6 +8,7 @@ import "~/styles/NavbarHeader.scss";
 import { MyOffCanvas } from "./MyOffCanvas";
 import { useMediaQuery } from "react-responsive";
 import { publicRoutes } from "~/config/routePath";
+import { Cart } from "./Cart";
 
 function NavbarHeaderPC({ className }) {
     const [showAbout, setShowAbout] = useState(false);
@@ -53,27 +54,29 @@ function NavbarHeaderPC({ className }) {
                                 </Nav.Item>
 
                                 <MyOffCanvas title="About" show={showAbout} onHide={() => setShowAbout(false)}>
-                                    <Nav.Link as={Link} to="/" className="fw-semibold fs-3">
-                                        Ingredients
-                                    </Nav.Link>
-                                    <Nav.Link as={Link} to="/" className="fw-semibold fs-3">
-                                        Sustainability
-                                    </Nav.Link>
-                                    <Nav.Link as={Link} to="/" className="fw-semibold fs-3">
-                                        About Us
-                                    </Nav.Link>
-                                    <Nav.Link as={Link} to="/" className="fw-semibold fs-3">
-                                        Press
-                                    </Nav.Link>
-                                    <Nav.Link as={Link} to="/" className="fw-semibold fs-3">
-                                        FAQ
-                                    </Nav.Link>
-                                    <Nav.Link as={Link} to="/" className="fw-semibold fs-3">
-                                        Blog
-                                    </Nav.Link>
-                                    <Nav.Link as={Link} to="/" className="fw-semibold fs-3">
-                                        Refer
-                                    </Nav.Link>
+                                    <div className="ms-5 mt-5">
+                                        <Nav.Link as={Link} to="/" className="fw-semibold fs-2 my-3">
+                                            Ingredients
+                                        </Nav.Link>
+                                        <Nav.Link as={Link} to="/" className="fw-semibold fs-2 my-3">
+                                            Sustainability
+                                        </Nav.Link>
+                                        <Nav.Link as={Link} to="/" className="fw-semibold fs-2 my-3">
+                                            About Us
+                                        </Nav.Link>
+                                        <Nav.Link as={Link} to="/" className="fw-semibold fs-2 my-3">
+                                            Press
+                                        </Nav.Link>
+                                        <Nav.Link as={Link} to="/" className="fw-semibold fs-2 my-3">
+                                            FAQ
+                                        </Nav.Link>
+                                        <Nav.Link as={Link} to="/" className="fw-semibold fs-2 my-3">
+                                            Blog
+                                        </Nav.Link>
+                                        <Nav.Link as={Link} to="/" className="fw-semibold fs-2 my-3">
+                                            Refer
+                                        </Nav.Link>
+                                    </div>
                                 </MyOffCanvas>
 
                                 <Nav.Link as={Link} to="/" className="text-black fs-5 p-3 fw-semibold">
@@ -100,11 +103,9 @@ function NavbarHeaderPC({ className }) {
                                     <span className="cart-notify" />
                                 </Nav.Item>
 
-                                <MyOffCanvas
-                                    title="My Cart"
-                                    placement="end"
-                                    show={showCart}
-                                    onHide={() => setShowCart(false)}></MyOffCanvas>
+                                <MyOffCanvas title="My Cart" placement="end" show={showCart} onHide={() => setShowCart(false)}>
+                                    <Cart />
+                                </MyOffCanvas>
 
                                 <Nav.Link as={Link} to={publicRoutes.signIn} className="text-black fs-5 fw-semibold ps-5">
                                     Sign In

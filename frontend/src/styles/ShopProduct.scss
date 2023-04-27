@@ -2,7 +2,7 @@
 
 .card {
     width: 100%;
-
+    animation: fadeIn 0.2s linear;
     &-button-above {
         display: none;
         position: absolute;
@@ -40,7 +40,7 @@
             overflow: hidden;
 
             img {
-                height: 300px;
+                max-height: 300px;
                 object-fit: cover;
             }
         }

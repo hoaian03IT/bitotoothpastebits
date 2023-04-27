@@ -16,7 +16,7 @@
 }
 
 header {
-    z-index: 9999;
+    z-index: 3;
 }
 
 * {
@@ -46,6 +46,11 @@ a:focus {
 
 .offcanvas-fluid {
     width: 100% !important;
+}
+
+.offcanvas {
+    width: 500px !important;
+    cursor: default !important;
 }
 
 .container-no-gutter {
@@ -163,6 +168,10 @@ a:focus {
     font-size: 4.6rem;
 }
 
+.top-height-navbar {
+    top: var(--height-navbar);
+}
+
 .text-black {
     color: var(--black-color);
 }
@@ -229,7 +238,7 @@ a:focus {
 }
 
 .btn-short {
-    min-width: 100px;
+    min-width: 140px;
 }
 
 .btn-light {

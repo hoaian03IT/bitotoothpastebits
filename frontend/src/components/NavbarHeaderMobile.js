@@ -9,6 +9,7 @@ import "~/styles/NavbarHeader.scss";
 import { MyOffCanvas } from "./MyOffCanvas";
 import { Divider } from "./Divider";
 import { publicRoutes } from "~/config/routePath";
+import { Cart } from "./Cart";
 
 function NavbarHeaderMobile({ className }) {
     const [showBars, setShowBars] = useState(false);
@@ -43,25 +44,33 @@ function NavbarHeaderMobile({ className }) {
                                 <ul className="ps-3">
                                     <li>
                                         <NavLink
+                                            onClick={() => setShowBars(false)}
                                             to={publicRoutes.shop}
                                             className={({ isActive }) => `${isActive ? "active" : ""} fs-3 fw-semibold`}>
                                             - Shop All
                                         </NavLink>
                                     </li>
                                     <li>
-                                        <NavLink to="/oldcare" className={({ isActive }) => `${isActive ? "active" : ""} fs-3 fw-semibold`}>
+                                        <NavLink
+                                            onClick={() => setShowBars(false)}
+                                            to="/oldcare"
+                                            className={({ isActive }) => `${isActive ? "active" : ""} fs-3 fw-semibold`}>
                                             - Old Care
                                         </NavLink>
                                     </li>
                                     <li>
                                         <NavLink
+                                            onClick={() => setShowBars(false)}
                                             to="/personalcare"
                                             className={({ isActive }) => `${isActive ? "active" : ""} fs-3 fw-semibold`}>
                                             - Personal Care
                                         </NavLink>
                                     </li>
                                     <li>
-                                        <NavLink to="/bundles" className={({ isActive }) => `${isActive ? "active" : ""} fs-3 fw-semibold`}>
+                                        <NavLink
+                                            onClick={() => setShowBars(false)}
+                                            to="/bundles"
+                                            className={({ isActive }) => `${isActive ? "active" : ""} fs-3 fw-semibold`}>
                                             - Bundles
                                         </NavLink>
                                     </li>
@@ -79,6 +88,7 @@ function NavbarHeaderMobile({ className }) {
                                     <ul className="ps-3">
                                         <li>
                                             <NavLink
+                                                onClick={() => setShowBars(false)}
                                                 as={Link}
                                                 to="/ingredients"
                                                 className={({ isActive }) => `${isActive ? "active" : ""} fs-3 fw-semibold`}>
@@ -87,6 +97,7 @@ function NavbarHeaderMobile({ className }) {
                                         </li>
                                         <li>
                                             <NavLink
+                                                onClick={() => setShowBars(false)}
                                                 as={Link}
                                                 to="/sustainability"
                                                 className={({ isActive }) => `${isActive ? "active" : ""} fs-3 fw-semibold`}>
@@ -95,6 +106,7 @@ function NavbarHeaderMobile({ className }) {
                                         </li>
                                         <li>
                                             <NavLink
+                                                onClick={() => setShowBars(false)}
                                                 as={Link}
                                                 to="/aboutus"
                                                 className={({ isActive }) => `${isActive ? "active" : ""} fs-3 fw-semibold`}>
@@ -103,6 +115,7 @@ function NavbarHeaderMobile({ className }) {
                                         </li>
                                         <li>
                                             <NavLink
+                                                onClick={() => setShowBars(false)}
                                                 as={Link}
                                                 to="/press"
                                                 className={({ isActive }) => `${isActive ? "active" : ""} fs-3 fw-semibold`}>
@@ -111,6 +124,7 @@ function NavbarHeaderMobile({ className }) {
                                         </li>
                                         <li>
                                             <NavLink
+                                                onClick={() => setShowBars(false)}
                                                 as={Link}
                                                 to="/faq"
                                                 className={({ isActive }) => `${isActive ? "active" : ""} fs-3 fw-semibold`}>
@@ -119,6 +133,7 @@ function NavbarHeaderMobile({ className }) {
                                         </li>
                                         <li>
                                             <NavLink
+                                                onClick={() => setShowBars(false)}
                                                 as={Link}
                                                 to="/blog"
                                                 className={({ isActive }) => `${isActive ? "active" : ""} fs-3 fw-semibold`}>
@@ -127,6 +142,7 @@ function NavbarHeaderMobile({ className }) {
                                         </li>
                                         <li>
                                             <NavLink
+                                                onClick={() => setShowBars(false)}
                                                 as={Link}
                                                 to="/refer"
                                                 className={({ isActive }) => `${isActive ? "active" : ""} fs-3 fw-semibold`}>
@@ -137,7 +153,7 @@ function NavbarHeaderMobile({ className }) {
                                 )}
                             </div>
                             <Divider className="my-3" position="right" />
-                            <Link to={publicRoutes.signIn} className="fs-4 fw-semibold">
+                            <Link onClick={() => setShowBars(false)} to={publicRoutes.signIn} className="fs-4 fw-semibold">
                                 SIGN IN
                             </Link>
                             <Link to="/help" className="fs-4 fw-semibold">
@@ -158,7 +174,9 @@ function NavbarHeaderMobile({ className }) {
                         <FontAwesomeIcon icon={faOpencart} className="fs-2" onClick={() => setShowCart(true)} />
                         <span className="cart-notify" />
                     </Nav.Item>
-                    <MyOffCanvas fluid show={showCart} onHide={() => setShowCart(false)} placement="end"></MyOffCanvas>
+                    <MyOffCanvas fluid show={showCart} onHide={() => setShowCart(false)} title="Cart" placement="end">
+                        <Cart />
+                    </MyOffCanvas>
                 </Nav>
             </Container>
         </Navbar>

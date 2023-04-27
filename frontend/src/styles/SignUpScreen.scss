@@ -7,7 +7,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-
+    animation: fadeIn 0.2s linear;
     & form {
         padding: 20px 40px;
         max-width: 400px;
