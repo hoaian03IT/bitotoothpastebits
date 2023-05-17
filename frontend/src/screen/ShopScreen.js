@@ -66,7 +66,6 @@ const data1 = [
 
 function ShopScreen() {
     const isLowerPCScreen = useMediaQuery({ query: "(max-width: 768px)" });
-    console.log(isLowerPCScreen);
 
     return (
         <div className="shop-screen">
@@ -131,7 +130,9 @@ function ShopScreen() {
                                         currentPrice={item.currentPrice}
                                         oldPrice={item.oldPrice}
                                         reviews={item.reviews}
-                                        specialPrice={item.monthDelivery ? item.currentPrice / item.monthDelivery : null}
+                                        specialPrice={
+                                            item.monthDelivery ? item.currentPrice / item.monthDelivery : null
+                                        }
                                         image={item.image}
                                     />
                                 </Col>

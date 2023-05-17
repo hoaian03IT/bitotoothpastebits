@@ -1,21 +1,72 @@
-import { Button, Form } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { useContext, useState } from "react";
+import { Button, Form, Spinner } from "react-bootstrap";
+import { Link, useNavigate } from "react-router-dom";
+import { registerApi } from "~/data/api";
 import { publicRoutes } from "~/config/routePath";
 
 import "~/styles/SignUpScreen.scss";
+import { USER_REGISTER_FAIL, USER_REGISTER_REQUEST, USER_REGISTER_SUCCESS } from "~/data/actions/userActions";
+import { Store } from "~/data/Store";
 
 function SignUpScreen() {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
+
+    const { state, dispatch } = useContext(Store);
+    const { user: userState } = state;
+
+    const navigate = useNavigate();
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        dispatch({ type: USER_REGISTER_REQUEST });
+        if (confirmPassword === password) {
+            try {
+                const response = await registerApi({ email, password });
+                dispatch({ type: USER_REGISTER_SUCCESS, payload: response.data });
+                // navigate
+                navigate(publicRoutes.home);
+            } catch (error) {
+                dispatch({ type: USER_REGISTER_FAIL, payload: error?.response?.data || error.message });
+            }
+        } else {
+            dispatch({ type: USER_REGISTER_FAIL, payload: "Password not correct!" });
+        }
+    };
+
     return (
         <div className="sign-up">
             <Form className="text-center">
                 <h1 className="fw-bold">Register</h1>
                 <Form.Group>
-                    <Form.Control type="text" placeholder="Email" required />
-                    <Form.Control type="password" placeholder="Password" required />
-                    <Form.Control type="password" placeholder="Confirm password" required />
+                    <Form.Control
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        type="text"
+                        placeholder="Email"
+                        required
+                    />
+                    <Form.Control
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        type="password"
+                        placeholder="Password"
+                        required
+                    />
+                    <Form.Control
+                        value={confirmPassword}
+                        onChange={(e) => setConfirmPassword(e.target.value)}
+                        type="password"
+                        placeholder="Confirm password"
+                        required
+                    />
                 </Form.Group>
 
-                <Button type="submit">Create account</Button>
+                <Button type="submit" onClick={handleSubmit}>
+                    {userState.loading ? <Spinner animation="border" size="sm" variant="dark" /> : "Create account"}
+                </Button>
                 <Link to={publicRoutes.signIn} className="link-sign-in">
                     Sign in here
                 </Link>

@@ -1,7 +1,7 @@
 import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useEffect, useState } from "react";
-import { Col, Container, Nav, Navbar, Row } from "react-bootstrap";
+import { useContext, useEffect, useState } from "react";
+import { Col, Container, Dropdown, Nav, Navbar, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 import "~/styles/NavbarHeader.scss";
@@ -9,11 +9,18 @@ import { MyOffCanvas } from "./MyOffCanvas";
 import { useMediaQuery } from "react-responsive";
 import { publicRoutes } from "~/config/routePath";
 import { Cart } from "./Cart";
+import { USER_KEY } from "~/constants";
+import { Store } from "~/data/Store";
+import { USER_LOGOUT } from "~/data/actions/userActions";
 
 function NavbarHeaderPC({ className }) {
     const [showAbout, setShowAbout] = useState(false);
     const [showCart, setShowCart] = useState(false);
     const [bgColor, setBgColor] = useState("transparent");
+
+    const user = JSON.parse(localStorage.getItem(USER_KEY));
+
+    const { dispatch } = useContext(Store);
 
     useEffect(() => {
         const listener = () => {
@@ -103,13 +110,35 @@ function NavbarHeaderPC({ className }) {
                                     <span className="cart-notify" />
                                 </Nav.Item>
 
-                                <MyOffCanvas title="My Cart" placement="end" show={showCart} onHide={() => setShowCart(false)}>
+                                <MyOffCanvas
+                                    title="My Cart"
+                                    placement="end"
+                                    show={showCart}
+                                    onHide={() => setShowCart(false)}>
                                     <Cart />
                                 </MyOffCanvas>
 
-                                <Nav.Link as={Link} to={publicRoutes.signIn} className="text-black fs-5 fw-semibold ps-5">
-                                    Sign In
-                                </Nav.Link>
+                                {user?.email ? (
+                                    <Nav.Item className="text-black fs-5 fw-semibold ms-5">
+                                        <Dropdown>
+                                            <Dropdown.Toggle className="dropdown-title" as="div">
+                                                {user.email}
+                                            </Dropdown.Toggle>
+                                            <Dropdown.Menu>
+                                                <Dropdown.Item onClick={() => dispatch({ type: USER_LOGOUT })}>
+                                                    Logout
+                                                </Dropdown.Item>
+                                            </Dropdown.Menu>
+                                        </Dropdown>
+                                    </Nav.Item>
+                                ) : (
+                                    <Nav.Link
+                                        as={Link}
+                                        to={publicRoutes.signIn}
+                                        className="text-black fs-5 fw-semibold ms-5">
+                                        Sign In
+                                    </Nav.Link>
+                                )}
                             </Nav>
                         </Col>
                     </Container>

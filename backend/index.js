@@ -1,5 +1,6 @@
 import express from "express";
 import * as dotenv from "dotenv";
+import cors from "cors";
 import { connectToDB } from "./src/config/db.js";
 import { routes } from "./src/routes/index.js";
 
@@ -10,6 +11,12 @@ dotenv.config();
 // connect to mongooseDB
 connectToDB();
 
+app.use(
+    cors({
+        origin: true,
+        credentials: true,
+    })
+);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true, limit: "100mb" }));
 

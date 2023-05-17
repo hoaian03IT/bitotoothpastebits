@@ -9,10 +9,12 @@ import "~/styles/Footer.scss";
 import { Copyright } from "./components/Copyright";
 import { NavbarHeaderMobile } from "./components/NavbarHeaderMobile";
 import { ScrollToTop } from "./components/ScrollToTop";
+import { ToastContainer } from "react-toastify";
 
 function App() {
     return (
         <BrowserRouter>
+            <ToastContainer autoClose={3000} />
             <ScrollToTop />
             <div>
                 <header className="position-fixed start-0 end-0">
