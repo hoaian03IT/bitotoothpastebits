@@ -3,6 +3,12 @@ import { createContext, useEffect, useReducer } from "react";
 import { toast } from "react-toastify";
 import { LOGIN_KEY, REFRESH_TOKEN_KEY, USER_KEY } from "~/constants";
 import {
+    FETCH_FEATURED_PRODUCTS_FAIL,
+    FETCH_FEATURED_PRODUCTS_REQUEST,
+    FETCH_FEATURED_PRODUCTS_SUCCESS,
+    FETCH_PRODUCTS_FAIL,
+    FETCH_PRODUCTS_REQUEST,
+    FETCH_PRODUCTS_SUCCESS,
     USER_FETCH_REFRESH_TOKEN_FAIL,
     USER_FETCH_REFRESH_TOKEN_REQUEST,
     USER_FETCH_REFRESH_TOKEN_SUCCESS,
@@ -16,6 +22,7 @@ import {
 } from "~/data/actions/userActions";
 import { logger } from "~/logger";
 import { fetchAccessTokenApi } from "./api";
+import { getError } from "~/utils";
 
 export const Store = createContext();
 
@@ -23,6 +30,11 @@ export const INIT_STATE = {
     user: {
         email: null,
         accessToken: null,
+        loading: false,
+    },
+    product: {
+        filteredProducts: [],
+        featuredProducts: {},
         loading: false,
     },
 };
@@ -90,10 +102,61 @@ function reducer(state, action) {
             localStorage.removeItem(LOGIN_KEY);
             localStorage.removeItem(USER_KEY);
             Cookies.remove(REFRESH_TOKEN_KEY);
+            window.location.reload();
             return {
                 ...state,
                 user: INIT_STATE.user,
             };
+
+        // PRODUCT
+        case FETCH_PRODUCTS_REQUEST:
+        case FETCH_FEATURED_PRODUCTS_REQUEST:
+            return {
+                ...state,
+                product: {
+                    ...state.product,
+                    loading: true,
+                },
+            };
+        case FETCH_PRODUCTS_SUCCESS:
+            return {
+                ...state,
+                product: {
+                    ...state.product,
+                    filteredProducts: action.payload,
+                    loading: false,
+                },
+            };
+        case FETCH_FEATURED_PRODUCTS_SUCCESS:
+            return {
+                ...state,
+                product: {
+                    ...state.product,
+                    featuredProducts: action.payload,
+                    loading: false,
+                },
+            };
+
+        case FETCH_PRODUCTS_FAIL:
+            return {
+                ...state,
+                product: {
+                    ...state.product,
+                    filteredProducts: [],
+                    loading: false,
+                },
+            };
+
+        case FETCH_FEATURED_PRODUCTS_FAIL:
+            return {
+                ...state,
+                product: {
+                    ...state.product,
+                    featuredProducts: [],
+                    loading: false,
+                },
+            };
+
         default:
             return state;
     }
@@ -107,18 +170,23 @@ export const StoreProvider = (props) => {
         const fetchAccessToken = async () => {
             const refreshToken = Cookies.get(REFRESH_TOKEN_KEY);
             const isLogged = localStorage.getItem(LOGIN_KEY);
-            dispatch({ type: USER_FETCH_REFRESH_TOKEN_REQUEST });
-            try {
-                if (isLogged) {
-                    const res = await fetchAccessTokenApi({ refreshToken });
-                    dispatch({ type: USER_FETCH_REFRESH_TOKEN_SUCCESS, payload: res.data });
-                } else {
-                    dispatch({ type: USER_FETCH_REFRESH_TOKEN_FAIL });
+
+            if (!refreshToken) {
+                if (isLogged) dispatch({ type: USER_LOGOUT });
+            } else {
+                dispatch({ type: USER_FETCH_REFRESH_TOKEN_REQUEST });
+                try {
+                    if (isLogged) {
+                        const res = await fetchAccessTokenApi({ refreshToken });
+                        dispatch({ type: USER_FETCH_REFRESH_TOKEN_SUCCESS, payload: res.data });
+                    } else {
+                        dispatch({ type: USER_FETCH_REFRESH_TOKEN_FAIL });
+                    }
+                } catch (error) {
+                    dispatch({ type: USER_FETCH_REFRESH_TOKEN_FAIL, payload: getError(error) });
                 }
-            } catch (error) {
-                dispatch({ type: USER_FETCH_REFRESH_TOKEN_FAIL, payload: error.res.data });
+                setTimeout(() => fetchAccessToken(), 24 * 60 * 60 * 1000);
             }
-            setTimeout(() => fetchAccessToken(), 24 * 60 * 60 * 1000);
         };
 
         fetchAccessToken();

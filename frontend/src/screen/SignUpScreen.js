@@ -7,6 +7,7 @@ import { publicRoutes } from "~/config/routePath";
 import "~/styles/SignUpScreen.scss";
 import { USER_REGISTER_FAIL, USER_REGISTER_REQUEST, USER_REGISTER_SUCCESS } from "~/data/actions/userActions";
 import { Store } from "~/data/Store";
+import { getError } from "~/utils";
 
 function SignUpScreen() {
     const [email, setEmail] = useState("");
@@ -29,7 +30,7 @@ function SignUpScreen() {
                 // navigate
                 navigate(publicRoutes.home);
             } catch (error) {
-                dispatch({ type: USER_REGISTER_FAIL, payload: error?.response?.data || error.message });
+                dispatch({ type: USER_REGISTER_FAIL, payload: getError(error) });
             }
         } else {
             dispatch({ type: USER_REGISTER_FAIL, payload: "Password not correct!" });

@@ -1,17 +1,33 @@
 import { faOpencart } from "@fortawesome/free-brands-svg-icons";
 import { faAngleRight, faBars } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Container, Nav, Navbar } from "react-bootstrap";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 
 import "~/styles/NavbarHeader.scss";
 import { MyOffCanvas } from "./MyOffCanvas";
 import { Divider } from "./Divider";
 import { publicRoutes } from "~/config/routePath";
 import { Cart } from "./Cart";
+import { Store } from "~/data/Store";
+import { USER_LOGOUT } from "~/data/actions/userActions";
+import { typeProducts } from "~/constants";
+import { convertTypeToText } from "~/utils";
+
+const learnContent = [
+    { title: "- Ingredients", link: "/ingredients" },
+    { title: "- Sustainability", link: "/sustainability" },
+    { title: "- About", link: "/aboutus" },
+    { title: "- Press", link: "/press" },
+    { title: "- FAQ", link: "/faq" },
+    { title: "- Blog", link: "/blog" },
+    { title: "- Refer", link: "/refer" },
+];
 
 function NavbarHeaderMobile({ className }) {
+    const { state, dispatch } = useContext(Store);
+
     const [showBars, setShowBars] = useState(false);
     const [showCart, setShowCart] = useState(false);
     const [bgColor, setBgColor] = useState("transparent");
@@ -42,38 +58,18 @@ function NavbarHeaderMobile({ className }) {
                             <div>
                                 <h1 className="fs-1 fw-bold">Shop</h1>
                                 <ul className="ps-3">
-                                    <li>
-                                        <NavLink
-                                            onClick={() => setShowBars(false)}
-                                            to={publicRoutes.shop}
-                                            className={({ isActive }) => `${isActive ? "active" : ""} fs-3 fw-semibold`}>
-                                            - Shop All
-                                        </NavLink>
-                                    </li>
-                                    <li>
-                                        <NavLink
-                                            onClick={() => setShowBars(false)}
-                                            to="/oldcare"
-                                            className={({ isActive }) => `${isActive ? "active" : ""} fs-3 fw-semibold`}>
-                                            - Old Care
-                                        </NavLink>
-                                    </li>
-                                    <li>
-                                        <NavLink
-                                            onClick={() => setShowBars(false)}
-                                            to="/personalcare"
-                                            className={({ isActive }) => `${isActive ? "active" : ""} fs-3 fw-semibold`}>
-                                            - Personal Care
-                                        </NavLink>
-                                    </li>
-                                    <li>
-                                        <NavLink
-                                            onClick={() => setShowBars(false)}
-                                            to="/bundles"
-                                            className={({ isActive }) => `${isActive ? "active" : ""} fs-3 fw-semibold`}>
-                                            - Bundles
-                                        </NavLink>
-                                    </li>
+                                    {typeProducts.map((type) => (
+                                        <li>
+                                            <NavLink
+                                                onClick={() => setShowBars(false)}
+                                                to={`${publicRoutes.shop}?t=${type}`}
+                                                className={({ isActive }) =>
+                                                    `${isActive ? "active" : ""} fs-3 fw-semibold`
+                                                }>
+                                                - {convertTypeToText(type)}
+                                            </NavLink>
+                                        </li>
+                                    ))}
                                 </ul>
                             </div>
                             <Divider className="my-3" position="right" />
@@ -82,80 +78,47 @@ function NavbarHeaderMobile({ className }) {
                                     className="d-flex align-items-center justify-content-between"
                                     onClick={() => setShowLearnContent(!showLearnContent)}>
                                     <h1 className="fs-1 fw-bold">Learn</h1>
-                                    <FontAwesomeIcon icon={faAngleRight} style={showLearnContent && { transform: "rotate(90deg)" }} />
+                                    <FontAwesomeIcon
+                                        icon={faAngleRight}
+                                        style={showLearnContent && { transform: "rotate(90deg)" }}
+                                    />
                                 </div>
                                 {showLearnContent && (
                                     <ul className="ps-3">
-                                        <li>
-                                            <NavLink
-                                                onClick={() => setShowBars(false)}
-                                                as={Link}
-                                                to="/ingredients"
-                                                className={({ isActive }) => `${isActive ? "active" : ""} fs-3 fw-semibold`}>
-                                                - Ingredients
-                                            </NavLink>
-                                        </li>
-                                        <li>
-                                            <NavLink
-                                                onClick={() => setShowBars(false)}
-                                                as={Link}
-                                                to="/sustainability"
-                                                className={({ isActive }) => `${isActive ? "active" : ""} fs-3 fw-semibold`}>
-                                                - Sustainability
-                                            </NavLink>
-                                        </li>
-                                        <li>
-                                            <NavLink
-                                                onClick={() => setShowBars(false)}
-                                                as={Link}
-                                                to="/aboutus"
-                                                className={({ isActive }) => `${isActive ? "active" : ""} fs-3 fw-semibold`}>
-                                                - About Us
-                                            </NavLink>
-                                        </li>
-                                        <li>
-                                            <NavLink
-                                                onClick={() => setShowBars(false)}
-                                                as={Link}
-                                                to="/press"
-                                                className={({ isActive }) => `${isActive ? "active" : ""} fs-3 fw-semibold`}>
-                                                - Press
-                                            </NavLink>
-                                        </li>
-                                        <li>
-                                            <NavLink
-                                                onClick={() => setShowBars(false)}
-                                                as={Link}
-                                                to="/faq"
-                                                className={({ isActive }) => `${isActive ? "active" : ""} fs-3 fw-semibold`}>
-                                                - FAQ
-                                            </NavLink>
-                                        </li>
-                                        <li>
-                                            <NavLink
-                                                onClick={() => setShowBars(false)}
-                                                as={Link}
-                                                to="/blog"
-                                                className={({ isActive }) => `${isActive ? "active" : ""} fs-3 fw-semibold`}>
-                                                - Blog
-                                            </NavLink>
-                                        </li>
-                                        <li>
-                                            <NavLink
-                                                onClick={() => setShowBars(false)}
-                                                as={Link}
-                                                to="/refer"
-                                                className={({ isActive }) => `${isActive ? "active" : ""} fs-3 fw-semibold`}>
-                                                - Refer
-                                            </NavLink>
-                                        </li>
+                                        {learnContent.map((item) => (
+                                            <li>
+                                                <NavLink
+                                                    onClick={() => setShowBars(false)}
+                                                    as={Link}
+                                                    to={item.link}
+                                                    className={({ isActive }) =>
+                                                        `${isActive ? "active" : ""} fs-3 fw-semibold`
+                                                    }>
+                                                    {item.title}
+                                                </NavLink>
+                                            </li>
+                                        ))}
                                     </ul>
                                 )}
                             </div>
                             <Divider className="my-3" position="right" />
-                            <Link onClick={() => setShowBars(false)} to={publicRoutes.signIn} className="fs-4 fw-semibold">
-                                SIGN IN
-                            </Link>
+                            {state.user.email ? (
+                                <Link
+                                    onClick={() => {
+                                        setShowBars(false);
+                                        dispatch({ type: USER_LOGOUT });
+                                    }}
+                                    className="fs-4 fw-semibold">
+                                    SIGN OUT
+                                </Link>
+                            ) : (
+                                <Link
+                                    onClick={() => setShowBars(false)}
+                                    to={publicRoutes.signIn}
+                                    className="fs-4 fw-semibold">
+                                    SIGN IN
+                                </Link>
+                            )}
                             <Link to="/help" className="fs-4 fw-semibold">
                                 HELP
                             </Link>

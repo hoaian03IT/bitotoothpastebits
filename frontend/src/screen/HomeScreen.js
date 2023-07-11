@@ -1,114 +1,51 @@
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useContext, useEffect } from "react";
 import { Button, Carousel, Col, Container, Row } from "react-bootstrap";
 import { useMediaQuery } from "react-responsive";
 import { Link, useNavigate } from "react-router-dom";
-import { images } from "~/assets/images";
 import { videos } from "~/assets/videos";
 import { Banner } from "~/components/Banner";
 import { Divider } from "~/components/Divider";
 import { FeaturedProduct } from "~/components/FeaturedProduct";
 import { ShopProduct } from "~/components/ShopProduct";
 import { publicRoutes } from "~/config/routePath";
+import { Store } from "~/data/Store";
+import {
+    FETCH_FEATURED_PRODUCTS_FAIL,
+    FETCH_FEATURED_PRODUCTS_REQUEST,
+    FETCH_FEATURED_PRODUCTS_SUCCESS,
+} from "~/data/actions/userActions";
+import { getFeaturedProductsApi } from "~/data/api";
 
 import "~/styles/HomeScreen.scss";
-
-const data = [
-    {
-        id: 1,
-        staticImage: images.staticImgProduct,
-        dynamicImage: images.dynamicImgProduct,
-        name: "Toothpaste Bits",
-        price: 32,
-        monthDelivery: 4,
-    },
-    {
-        id: 2,
-        staticImage: images.staticImgProduct1,
-        dynamicImage: images.dynamicImgProduct1,
-        name: "Body Balm",
-        price: 28,
-        monthDelivery: 4,
-    },
-    {
-        id: 3,
-        staticImage: images.staticImgProduct,
-        dynamicImage: images.dynamicImgProduct,
-        name: "Toothpaste Bits",
-        price: 32,
-        monthDelivery: 4,
-    },
-    {
-        id: 4,
-        staticImage: images.staticImgProduct1,
-        dynamicImage: images.dynamicImgProduct1,
-        name: "Body Balm",
-        price: 28,
-        monthDelivery: 4,
-    },
-    {
-        id: 5,
-        staticImage: images.staticImgProduct,
-        dynamicImage: images.dynamicImgProduct,
-        name: "Toothpaste Bits",
-        price: 32,
-        monthDelivery: 4,
-    },
-    {
-        id: 6,
-        staticImage: images.staticImgProduct1,
-        dynamicImage: images.dynamicImgProduct1,
-        name: "Body Balm",
-        price: 28,
-        monthDelivery: 4,
-    },
-];
-
-const data1 = [
-    {
-        id: 1,
-        name: "Toothpaste Bits",
-        description: "Fresh Mint with Fluoride",
-        currentPrice: 32,
-        oldPrice: 48,
-        reviews: 20081,
-        monthDelivery: 4,
-        image: images.product1,
-    },
-    {
-        id: 2,
-        name: "Toothpaste Bits",
-        description: "Fresh Mint with Fluoride",
-        currentPrice: 32,
-        oldPrice: 48,
-        reviews: 20081,
-        image: images.product2,
-    },
-    {
-        id: 3,
-        name: "Toothpaste Bits",
-        description: "Fresh Mint with Fluoride",
-        currentPrice: 28,
-        oldPrice: null,
-        reviews: 20081,
-        image: images.product1,
-    },
-    {
-        id: 4,
-        name: "Toothpaste Bits",
-        description: "Fresh Mint with Fluoride",
-        currentPrice: 32,
-        oldPrice: 48,
-        reviews: 20081,
-        image: images.product2,
-    },
-];
+import { getError } from "~/utils";
 
 function HomeScreen() {
+    const { state, dispatch } = useContext(Store);
+
+    const { featuredProducts } = state.product;
+
     const matchMobile = useMediaQuery({ query: "(max-width: 767px)" });
     const matchPortable = useMediaQuery({ query: "(max-width: 991px)" });
 
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const fetchFeaturedProducts = async () => {
+            if (Object.keys(state.product.featuredProducts).length === 0) {
+                dispatch({ type: FETCH_FEATURED_PRODUCTS_REQUEST });
+                try {
+                    const res = await getFeaturedProductsApi();
+                    dispatch({ type: FETCH_FEATURED_PRODUCTS_SUCCESS, payload: res.data });
+                } catch (error) {
+                    dispatch({ type: FETCH_FEATURED_PRODUCTS_FAIL, payload: getError(error) });
+                }
+            }
+        };
+
+        fetchFeaturedProducts();
+    }, [dispatch, state.product.featuredProducts]);
 
     return (
         <div>
@@ -116,15 +53,8 @@ function HomeScreen() {
             <div className="home-carousel">
                 <div className="scroll-container-x">
                     <div className="d-flex justify-content-center align-items-center">
-                        {data.slice(0, 5).map((item) => (
-                            <FeaturedProduct
-                                key={item.id}
-                                staticImage={item.staticImage}
-                                dynamicImage={item.dynamicImage}
-                                name={item.name}
-                                price={item.price}
-                                monthDelivery={item.monthDelivery}
-                            />
+                        {featuredProducts.popular?.map((item) => (
+                            <FeaturedProduct key={item._id} {...item} />
                         ))}
                     </div>
                 </div>
@@ -143,7 +73,8 @@ function HomeScreen() {
                 <div className="mt-5 pt-5 text-center background-linear-gradient1">
                     <h1 className="fs-huge fw-bold ff-1">Meet Bite</h1>
                     <p className="fs-3 mt-5">
-                        We’re here to make daily routines better for your body <br /> and better for our planet — because small change can
+                        We’re here to make daily routines better for your body <br /> and better for our planet —
+                        because small change can
                         <br />
                         make a big impact.
                     </p>
@@ -155,13 +86,19 @@ function HomeScreen() {
                     <Carousel
                         className="my-5 py-5 home-text-carousel"
                         variant="dark"
-                        nextIcon={matchMobile ? null : <span aria-hidden="true" className="carousel-control-next-icon" />}
-                        prevIcon={matchMobile ? null : <span aria-hidden="true" className="carousel-control-prev-icon" />}>
+                        nextIcon={
+                            matchMobile ? null : <span aria-hidden="true" className="carousel-control-next-icon" />
+                        }
+                        prevIcon={
+                            matchMobile ? null : <span aria-hidden="true" className="carousel-control-prev-icon" />
+                        }>
                         <Carousel.Item>
                             <h3 className="ff-1 fst-italic">"The Most Creative People in Business 2020"</h3>
                         </Carousel.Item>
                         <Carousel.Item>
-                            <h3 className="ff-1 fst-italic">"Bite Is Revolutionizing Toothpaste And The Oral Care Industry"</h3>
+                            <h3 className="ff-1 fst-italic">
+                                "Bite Is Revolutionizing Toothpaste And The Oral Care Industry"
+                            </h3>
                         </Carousel.Item>
                         <Carousel.Item>
                             <h3 className="ff-1 fst-italic">
@@ -187,17 +124,9 @@ function HomeScreen() {
 
                         <Col md={matchPortable ? 12 : 6} className="flex-row">
                             <Row>
-                                {data1.slice(0, 5).map((item) => (
-                                    <Col xs={6} key={item.id}>
-                                        <ShopProduct
-                                            name={item.name}
-                                            description={item.description}
-                                            currentPrice={item.currentPrice}
-                                            oldPrice={item.oldPrice}
-                                            reviews={item.reviews}
-                                            specialPrice={item.monthDelivery ? item.currentPrice / item.monthDelivery : null}
-                                            image={item.image}
-                                        />
+                                {featuredProducts.oralCare?.map((item) => (
+                                    <Col xs={6} key={item._id}>
+                                        <ShopProduct {...item} />
                                     </Col>
                                 ))}
                             </Row>
@@ -213,17 +142,9 @@ function HomeScreen() {
                     <Row>
                         <Col md={matchPortable ? 12 : 6} className="flex-row">
                             <Row>
-                                {data1.slice(0, 5).map((item) => (
-                                    <Col xs={6} key={item.id}>
-                                        <ShopProduct
-                                            name={item.name}
-                                            description={item.description}
-                                            currentPrice={item.currentPrice}
-                                            oldPrice={item.oldPrice}
-                                            reviews={item.reviews}
-                                            specialPrice={item.monthDelivery ? item.currentPrice / item.monthDelivery : null}
-                                            image={item.image}
-                                        />
+                                {featuredProducts.personalCare?.map((item) => (
+                                    <Col xs={6} key={item._id}>
+                                        <ShopProduct {...item} />
                                     </Col>
                                 ))}
                             </Row>

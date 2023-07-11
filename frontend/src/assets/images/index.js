@@ -9,4 +9,5 @@ export const images = {
     product2: require("~/assets/images/product2.jpg"),
     product3: require("~/assets/images/product3.jpg"),
     sticker: require("~/assets/images/sticker.jpg"),
+    maintaining: require("~/assets/images/maintaining.jpg"),
 };

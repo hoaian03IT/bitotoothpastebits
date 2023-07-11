@@ -8,6 +8,12 @@ const USER_FETCH_REFRESH_TOKEN_REQUEST = "userFetchRefreshTokenRequest";
 const USER_FETCH_REFRESH_TOKEN_SUCCESS = "userFetchRefreshTokenSuccess";
 const USER_FETCH_REFRESH_TOKEN_FAIL = "userFetchRefreshTokenFail";
 const USER_LOGOUT = "userLogout";
+const FETCH_PRODUCTS_REQUEST = "fetchProductsRequest";
+const FETCH_PRODUCTS_SUCCESS = "fetchProductsSuccess";
+const FETCH_PRODUCTS_FAIL = "fetchProductsFail";
+const FETCH_FEATURED_PRODUCTS_REQUEST = "fetchFeaturedProductsRequest";
+const FETCH_FEATURED_PRODUCTS_SUCCESS = "fetchFeaturedProductsSuccess";
+const FETCH_FEATURED_PRODUCTS_FAIL = "fetchFeaturedProductsFail";
 
 export {
     USER_LOGIN_REQUEST,
@@ -20,4 +26,10 @@ export {
     USER_FETCH_REFRESH_TOKEN_SUCCESS,
     USER_FETCH_REFRESH_TOKEN_FAIL,
     USER_LOGOUT,
+    FETCH_PRODUCTS_SUCCESS,
+    FETCH_PRODUCTS_REQUEST,
+    FETCH_PRODUCTS_FAIL,
+    FETCH_FEATURED_PRODUCTS_REQUEST,
+    FETCH_FEATURED_PRODUCTS_SUCCESS,
+    FETCH_FEATURED_PRODUCTS_FAIL,
 };

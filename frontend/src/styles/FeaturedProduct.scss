@@ -6,10 +6,15 @@
         border-radius: 20px;
         border: none;
 
-        &-image {
-            border-radius: 20px;
-            transform: scale(5px);
-            cursor: pointer;
+        &-image-wrapper {
+            height: 250px;
+            & img {
+                height: 100%;
+                border-radius: 20px;
+                transform: scale(5px);
+                cursor: pointer;
+                object-fit: cover;
+            }
         }
 
         &-name {

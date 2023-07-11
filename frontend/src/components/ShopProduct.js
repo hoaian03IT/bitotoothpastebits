@@ -13,6 +13,8 @@ function ShopProduct(props) {
     const [active, setActive] = useState(false);
     const matchMobile = useMediaQuery({ query: "(max-width: 767px)" });
 
+    const specialPrice = props.monthDelivery ? props.currentPrice / props.monthDelivery : null;
+
     return (
         <Card
             className={`shop-product border-0 ${active && "active"} cursor-pointer`}
@@ -24,7 +26,9 @@ function ShopProduct(props) {
                     <div className="shop-product-image">
                         <Card.Img src={props.image} alt={props.name} onClick={() => navigate("/details")} />
                     </div>
-                    <Button variant="fade" className={`card-button-above ${matchMobile ? "btn-small" : ""} ${active && "appear"} fw-bold`}>
+                    <Button
+                        variant="fade"
+                        className={`card-button-above ${matchMobile ? "btn-small" : ""} ${active && "appear"} fw-bold`}>
                         Learn More
                     </Button>
                     <Button
@@ -32,16 +36,26 @@ function ShopProduct(props) {
                         className={`card-button-below ${matchMobile ? "btn-small" : ""} ${active && "appear"} fw-bold`}>
                         Add To Cart
                     </Button>
-                    {props.specialPrice && <Sticker price={props.specialPrice} />}
+                    {specialPrice && <Sticker price={specialPrice} />}
                 </div>
+                {/* show current price */}
                 <div className="d-flex justify-content-between mt-3">
                     <Card.Title className={`fw-bold ${matchMobile ? "fs-6" : "fs-5"} `}>{props.name}</Card.Title>
-                    <span className={`fs-5 fw-bold ${props.oldPrice && "price-current"}`}>${props.currentPrice}</span>
+                    <span className={`fs-5 fw-bold ${props.salePrice && "price-current"}`}>
+                        ${props.salePrice ? props.salePrice : props.originalPrice}
+                    </span>
                 </div>
-                <div className="d-flex justify-content-between">
-                    <Card.Text className="ff-1 fst-italic fs-6 mb-0">{props.description}</Card.Text>
-                    {props.oldPrice && !matchMobile ? <span className="fs-6 price-old">${props.oldPrice}</span> : <></>}
-                </div>
+                {/* Show sale price */}
+                {props.salePrice > 0 && (
+                    <div className="d-flex justify-content-between">
+                        <Card.Text className="ff-1 fst-italic fs-6 mb-0">{props.description}</Card.Text>
+                        {props.originalPrice && !matchMobile ? (
+                            <span className="fs-6 price-old">${props.originalPrice}</span>
+                        ) : (
+                            <></>
+                        )}
+                    </div>
+                )}
 
                 <div className="d-flex align-items-center fs-small">
                     {["", "", "", "", ""].map((a, i) => (

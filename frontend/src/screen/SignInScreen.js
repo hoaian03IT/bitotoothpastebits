@@ -6,6 +6,7 @@ import { Store } from "~/data/Store";
 import { USER_LOGIN_FAIL, USER_LOGIN_REQUEST, USER_LOGIN_SUCCESS } from "~/data/actions/userActions";
 import { loginApi } from "~/data/api";
 import "~/styles/SignInScreen.scss";
+import { getError } from "~/utils";
 
 function SignInScreen() {
     const [email, setEmail] = useState("");
@@ -27,7 +28,7 @@ function SignInScreen() {
             // navigate
             navigate(publicRoutes.home);
         } catch (error) {
-            dispatch({ type: USER_LOGIN_FAIL, payload: error?.response?.data || error.message });
+            dispatch({ type: USER_LOGIN_FAIL, payload: getError(error) });
         }
     };
 
